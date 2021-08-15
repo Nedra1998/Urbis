@@ -14,8 +14,8 @@ function(generate_version_header _dest)
   endif()
 
   string(MAKE_C_IDENTIFIER ${PROJECT_NAME} _id)
-  string(TOUPPER ${_id} _project_upper)
-  string(TOLOWER ${_id} _project_lower)
+  string(TOUPPER ${_id} PROJECT_UPPER)
+  string(TOLOWER ${_id} PROJECT_LOWER)
 
   if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
     include(GetGitRevisionDescription)

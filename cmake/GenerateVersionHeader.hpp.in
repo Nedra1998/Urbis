@@ -9,7 +9,7 @@ namespace @PROJECT_LOWER@ {
     static const unsigned int major = @PROJECT_VERSION_MAJOR@;
     static const unsigned int minor = @PROJECT_VERSION_MINOR@;
     static const unsigned int patch = @PROJECT_VERSION_PATCH@;
-    static const unsigned int build = @PROJECT_VERSION_BUILD@;
+    static const std::string build = "@PROJECT_VERSION_BUILD@";
   }
 }
 

@@ -28,6 +28,7 @@ cmake_dependent_option(ENABLE_IPO "Enable interprocedural optimizations" ON
 
 # TARGETS
 
+add_subdirectory(extern)
 add_subdirectory(src)
 
 # SUMMARY
