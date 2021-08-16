@@ -8,6 +8,7 @@
 #include <unistd.h>
 #endif
 
+#include "data/settings.hpp"
 #include "logging.hpp"
 #include "version.hpp"
 
@@ -64,6 +65,13 @@ int main(int argc, char const *argv[]) {
     std::cerr << "Log initialization failed: " << ex.what() << std::endl;
     return 1;
   }
+
+  if (!urbis::data::read_settings())
+    return 1;
+  LINFO("Resolution {}x{}", urbis::data::settings->video.width,
+        urbis::data::settings->video.height);
+  if (!urbis::data::write_settings())
+    return 1;
 
   return 0;
 }

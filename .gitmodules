@@ -10,3 +10,6 @@
 [submodule "extern/raylib"]
 	path = extern/raylib
 	url = https://github.com/raysan5/raylib
+[submodule "extern/cereal"]
+	path = extern/cereal
+	url = https://github.com/USCiLab/cereal
