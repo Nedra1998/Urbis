@@ -2,6 +2,9 @@
 # Build
 build/
 
+# LSP
+.cache/
+
 ### C++
 # Prerequisites
 *.d
