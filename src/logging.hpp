@@ -8,17 +8,10 @@
 #define SPDLOG_FMT_EXTERNAL
 
 #include <spdlog/common.h>
-#include <spdlog/sinks/basic_file_sink.h>
-#include <spdlog/sinks/daily_file_sink.h>
 #include <spdlog/sinks/dist_sink.h>
 #include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/stdout_sinks.h>
-#if defined(_WIN32) || defined(_WIN64)
-#include <spdlog/sinks/msvc_sink.h>
-#else
-#include <spdlog/sinks/syslog_sink.h>
-#endif
 #include <spdlog/spdlog.h>
 
 #define URBIS_LOG(logger, level, ...)                                          \
@@ -46,6 +39,7 @@
 namespace urbis::logging {
 extern std::shared_ptr<spdlog::sinks::dist_sink_mt> dist_sink;
 void configure_logging();
+bool set_raylib_callback();
 
 inline std::shared_ptr<spdlog::logger> get(const std::string &logger) {
   std::shared_ptr<spdlog::logger> spdlog_logger = spdlog::get(logger);

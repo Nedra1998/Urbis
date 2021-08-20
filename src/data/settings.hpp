@@ -11,17 +11,19 @@
 namespace urbis::data {
 struct Settings {
   struct Video {
-    std::size_t width, height;
-    bool fullscreen;
+    std::size_t width = 1280, height = 720;
+    std::uint16_t fps = 120;
+    bool vsync = true, fullscreen = false;
 
     template <class Archive>
     void serialize(Archive &archive, const std::uint32_t version) {
       switch (version) {
       case 0:
-        archive(width, height, fullscreen);
+        archive(width, height, fps, vsync, fullscreen);
         break;
       default:
         LERR("Unrecognized urbis::data::Settings::Video version ({})", version);
+        return;
       }
     }
   };
@@ -37,6 +39,7 @@ struct Settings {
         break;
       default:
         LERR("Unrecognized urbis::data::Settings::Audio version ({})", version);
+        return;
       }
     }
   };
@@ -52,6 +55,7 @@ struct Settings {
       break;
     default:
       LERR("Unrecognized urbis::data::Settings version ({})", version);
+      return;
     }
   }
 };

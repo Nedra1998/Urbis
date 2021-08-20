@@ -6,4 +6,4 @@ add_executable(urbis ${SOURCES})
 target_compile_features(urbis PRIVATE cxx_std_17)
 target_include_directories(urbis PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
                                          "${CMAKE_CURRENT_BINARY_DIR}/include")
-target_link_libraries(urbis cxxopts fmt spdlog cereal)
+target_link_libraries(urbis cxxopts fmt spdlog cereal raylib)
