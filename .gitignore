@@ -1,3 +1,7 @@
+### Custom
+# Build
+build/
+
 ### C++
 # Prerequisites
 *.d

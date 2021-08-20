@@ -1,15 +1,20 @@
 [submodule "extern/cxxopts"]
 	path = extern/cxxopts
 	url = https://github.com/jarro2783/cxxopts
+  shallow = true
 [submodule "extern/fmt"]
 	path = extern/fmt
 	url = https://github.com/fmtlib/fmt
+  shallow = true
 [submodule "extern/spdlog"]
 	path = extern/spdlog
 	url = https://github.com/gabime/spdlog
+  shallow = true
 [submodule "extern/raylib"]
 	path = extern/raylib
 	url = https://github.com/raysan5/raylib
+  shallow = true
 [submodule "extern/cereal"]
 	path = extern/cereal
 	url = https://github.com/USCiLab/cereal
+  shallow = true
