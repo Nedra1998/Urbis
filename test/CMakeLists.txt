@@ -11,4 +11,4 @@ if(ENABLE_PCH)
 endif()
 
 include(Catch)
-catch_discover_tests(unit-tests)
+catch_discover_tests(unit-tests TEST_PREFIX "unit.")

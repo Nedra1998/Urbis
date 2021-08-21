@@ -3,14 +3,14 @@
 
 #include <string>
 namespace @PROJECT_LOWER@ {
-  namespace version {
-    static const std::string semver = "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@-@PROJECT_VERSION_BUILD@";
-    static const std::string core = "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@";
-    static const unsigned int major = @PROJECT_VERSION_MAJOR@;
-    static const unsigned int minor = @PROJECT_VERSION_MINOR@;
-    static const unsigned int patch = @PROJECT_VERSION_PATCH@;
-    static const std::string build = "@PROJECT_VERSION_BUILD@";
-  }
-}
+namespace version {
+static const std::string semver = "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@-@PROJECT_VERSION_BUILD@";
+static const std::string core = "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@";
+static const unsigned int major = @PROJECT_VERSION_MAJOR@;
+static const unsigned int minor = @PROJECT_VERSION_MINOR@;
+static const unsigned int patch = @PROJECT_VERSION_PATCH@;
+static const std::string build = "@PROJECT_VERSION_BUILD@";
+} // namespace version
+} // namespace @PROJECT_LOWER@
 
 #endif // @PROJECT_UPPER@_VERSION_HPP_

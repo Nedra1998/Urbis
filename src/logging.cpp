@@ -1,8 +1,15 @@
 #include "logging.hpp"
 
 #include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
+#include <functional>
 #include <mutex>
 #include <raylib.h>
+#include <spdlog/common.h>
+#include <spdlog/logger.h>
+#include <spdlog/sinks/dist_sink.h>
+#include <spdlog/spdlog.h>
 
 namespace urbis::logging {
 std::shared_ptr<spdlog::sinks::dist_sink_mt> dist_sink = nullptr;
@@ -15,8 +22,7 @@ void configure_logging_impl() {
 #else
   spdlog::set_level(spdlog::level::trace);
 #endif
-  spdlog::set_pattern(
-      "[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [%s:%#] <%t> %v");
+  spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [%s:%#] <%t> %v");
 }
 void urbis::logging::configure_logging() {
   std::call_once(_configure_logging_impl, configure_logging_impl);
@@ -34,6 +40,8 @@ void raylib_callback(int log_level, const char *text, va_list args) {
   int bufsize = std::vsnprintf(nullptr, 0, text, args) + 1;
   char *buf = reinterpret_cast<char *>(std::malloc(sizeof(char) * bufsize));
   std::vsnprintf(buf, bufsize, text, args_cpy);
+  va_end(args_cpy);
+
   switch (log_level) {
   case LOG_FATAL:
     raylib_logger->critical(buf);

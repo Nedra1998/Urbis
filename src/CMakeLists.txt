@@ -25,6 +25,40 @@ if(ENABLE_PCH)
     <cereal/cereal.hpp>)
 endif()
 
+if(ENABLE_FORMATTING)
+  add_lint_target(
+    urbis-clangformat TEST
+    TARGET urbis
+    EXECUTABLE "${CLANGFORMAT_EXECUTABLE}"
+    TEST_ARGS "--Werror" "--dry-run"
+    FIX_ARGS "-i" EXTRA_ARGS "--dry-run")
+endif()
+
+if(ENABLE_LINTING)
+  add_lint_target(
+    urbis-cppcheck TEST
+    TARGET urbis
+    EXECUTABLE "${CPPCHECK_EXECUTABLE}"
+    ARGS "--cppcheck-build-dir=${CMAKE_CURRENT_BINARY_DIR}"
+         "--project=${PROJECT_BINARY_DIR}/compile_commands.json" "--std=c++17"
+         "-i${PROJECT_SOURCE_DIR}/extern" "-i${PROJECT_SOURCE_DIR}/test")
+
+  add_lint_target(
+    urbis-clangtidy TEST
+    TARGET urbis
+    EXECUTABLE "${CLANGTIDY_EXECUTABLE}"
+    ARGS "-p" "${PROJECT_BINARY_DIR}/compile_commands.json"
+    TEST_ARGS "--warnings-as-errors=*"
+    FIX_ARGS "--fix-errors" "--fix")
+
+  add_lint_target(
+    urbis-iwyu
+    TARGET urbis
+    EXECUTABLE "${IWYU_TOOL_EXECUTABLE}"
+    ARGS "-p" "${PROJECT_BINARY_DIR}/compile_commands.json" "--output-format"
+         "iwyu") 
+endif()
+
 add_executable(urbis-exec "${CMAKE_CURRENT_SOURCE_DIR}/main.cpp")
 set_property(TARGET urbis-exec PROPERTY INTERPROCEDURAL_OPTIMIZATION
                                         ${ENABLE_IPO})

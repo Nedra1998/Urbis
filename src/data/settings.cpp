@@ -1,8 +1,15 @@
 #include "data/settings.hpp"
 
+#include <cereal/cereal.hpp>
+#include <cereal/details/helpers.hpp>
+#include <exception>
 #include <filesystem>
 #include <fstream>
+#include <locale>
+#include <new>
 #include <string>
+#include <system_error>
+#include <utility>
 
 #ifdef NDEBUG
 #include <cereal/archives/portable_binary.hpp>

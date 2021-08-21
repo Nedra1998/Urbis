@@ -1,18 +1,11 @@
 #include "core.hpp"
 
-#include <fmt/format.h>
+#include <cstdint>
+#include <memory>
 #include <raylib.h>
-#include <spdlog/common.h>
-#include <spdlog/sinks/dist_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-
-#if defined(__APPLE__) || defined(__unix__) || defined(__unix)
-#include <unistd.h>
-#endif
 
 #include "data/settings.hpp"
 #include "logging.hpp"
-#include "version.hpp"
 
 int urbis::main() {
   if (!urbis::logging::set_raylib_callback())

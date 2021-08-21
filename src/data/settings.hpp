@@ -2,9 +2,10 @@
 #define URBIS_DATA_SETTINGS_HPP_
 
 #include <cereal/cereal.hpp>
-#include <cinttypes>
+#include <cstdint>
 #include <cstdlib>
 #include <memory>
+#include <type_traits>
 
 #include "logging.hpp"
 

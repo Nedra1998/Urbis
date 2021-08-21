@@ -1,18 +1,19 @@
 #ifndef URBIS_UTIL_LOG_HPP
 #define URBIS_UTIL_LOG_HPP
 
-#include <memory>
-
 #undef SPDLOG_ACTIVE_LEVEL
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #define SPDLOG_FMT_EXTERNAL
 
+#include <memory>
+#include <new>
 #include <spdlog/common.h>
+#include <spdlog/logger.h>
 #include <spdlog/sinks/dist_sink.h>
-#include <spdlog/sinks/rotating_file_sink.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/sinks/stdout_sinks.h>
 #include <spdlog/spdlog.h>
+#include <string>
+#include <type_traits>
+#include <utility>
 
 #define URBIS_LOG(logger, level, ...)                                          \
   urbis::logging::get(logger)->log(                                            \

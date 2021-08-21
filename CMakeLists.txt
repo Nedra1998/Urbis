@@ -18,6 +18,7 @@ include(EnableProfiling)
 include(CMakeDependentOption)
 include(SetDefaultBuildType)
 include(GenerateVersionHeader)
+include(AddLintTarget)
 
 find_package(CCache)
 find_package(ClangFormat)
