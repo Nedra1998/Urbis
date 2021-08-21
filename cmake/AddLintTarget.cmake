@@ -11,7 +11,7 @@ function(add_lint_target NAME)
   endif()
 
   if(NOT _EXECUTABLE AND NOT EXISTS "${_EXECUTABLE}")
-    message(FATAL_ERROR "Lint target requires an executable")
+    return()
   endif()
 
   if(NOT _COMMENT)

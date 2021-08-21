@@ -2,15 +2,17 @@
 #include <fmt/format.h>
 #include <spdlog/common.h>
 #include <spdlog/sinks/dist_sink.h>
+#include <spdlog/sinks/rotating_file_sink.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/sinks/stdout_sinks.h>
 
 #if defined(__APPLE__) || defined(__unix__) || defined(__unix)
 #include <unistd.h>
 #endif
 
+#include "core.hpp"
 #include "logging.hpp"
 #include "version.hpp"
-#include "core.hpp"
 
 int main(int argc, char const *argv[]) {
   cxxopts::Options options("urbis",

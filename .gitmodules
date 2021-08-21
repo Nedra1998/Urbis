@@ -21,6 +21,8 @@
 [submodule "extern/raylib-cpp"]
 	path = extern/raylib-cpp
 	url = https://github.com/RobLoach/raylib-cpp
+  shallow = true
 [submodule "extern/Catch2"]
 	path = extern/Catch2
 	url = https://github.com/catchorg/Catch2
+  shallow = true
