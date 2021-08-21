@@ -1,0 +1,59 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+defaults:
+  run:
+    shell: bash
+env:
+  BUILD_TYPE: Release
+
+jobs:
+  lint-commit:
+    name: Lint Commit Messageo
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Lint Commit Messages
+        uses: wagoid/commitlint-github-action@v3
+        with:
+          configFile: .commitlint.js
+  linux:
+    name: Linux
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: "ubuntu-latest"
+      - name: Configure CMake
+        run: cmake -B ${{ github.workspace }}/build -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }}
+      - name: Build Urbis
+        run: cmake --build ${{ github.workspace }}/build --config ${{ env.BUILD_TYPE }}
+      - name: Run Test
+        working-directory: ${{ github.workspace }}/build
+        run: ctest -C ${{ env.BUILD_TYPE }}
+      - name: Build Package
+        working-directory: ${{ github.workspace }}/build
+        run: cpack -C ${{ env.BUILD_TYPE }} -G TGZ -D CPACK_PACKAGE_FILE_NAME=Urbis-${{ runner.os }}
+      - name: Upload Package
+        uses: actions/upload-artifact@v2
+        with:
+          name: Urbis-${{ runner.os }}.tar.gz
+          path: ${{ github.workspace }}/build
+          if-no-files-found: error

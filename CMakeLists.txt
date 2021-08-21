@@ -124,6 +124,22 @@ if(ENABLE_TESTS)
 endif()
 
 # }}}
+# INSTALL {{{
+
+if("${CMAKE_BUILD_TYPE}" MATCHES "Release|RelWithDebInfo")
+  include(GNUInstallDirs)
+  install(
+    TARGETS urbis-exec
+    CONFIGURATIONS Release
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+  set(CPACK_PACKAGE_VENDOR "LuxAter")
+  set(CPACK_PACKAGE_CHECKSUM MD5)
+  set(CPACK_GENERATOR TGZ ZIP)
+  include(CPack)
+endif()
+
+# }}}
 # SUMMARY {{{
 
 # }}}
