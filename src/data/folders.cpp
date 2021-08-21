@@ -77,8 +77,8 @@ urbis::data::PlatformFolders::get_config(const std::string &package) {
   return home() + "/Library/Application Support";
 #elif defined(__unix__)
   if (!package.empty())
-    return linux_folder_default("XDG_CONFIG_HOME", ".confige") + '/' + package;
-  return linux_folder_default("XDG_CONFIG_HOME", ".confige");
+    return linux_folder_default("XDG_CONFIG_HOME", ".config") + '/' + package;
+  return linux_folder_default("XDG_CONFIG_HOME", ".config");
 #else
   static_assert(false, "PlatformFolders::config() unsuported platform");
 #endif
@@ -94,8 +94,8 @@ urbis::data::PlatformFolders::get_cache(const std::string &package) {
   return home() + "/Library/Caches";
 #elif defined(__unix__)
   if (!package.empty())
-    return linux_folder_default("XDG_CACHE_HOME", ".confige") + '/' + package;
-  return linux_folder_default("XDG_CACHE_HOME", ".confige");
+    return linux_folder_default("XDG_CACHE_HOME", ".cache") + '/' + package;
+  return linux_folder_default("XDG_CACHE_HOME", ".cache");
 #else
   static_assert(false, "PlatformFolders::cache() unsuported platform");
 #endif

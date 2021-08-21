@@ -18,3 +18,9 @@
 	path = extern/cereal
 	url = https://github.com/USCiLab/cereal
   shallow = true
+[submodule "extern/raylib-cpp"]
+	path = extern/raylib-cpp
+	url = https://github.com/RobLoach/raylib-cpp
+[submodule "extern/Catch2"]
+	path = extern/Catch2
+	url = https://github.com/catchorg/Catch2

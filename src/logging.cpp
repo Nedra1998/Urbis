@@ -16,7 +16,7 @@ void configure_logging_impl() {
   spdlog::set_level(spdlog::level::trace);
 #endif
   spdlog::set_pattern(
-      "[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [%s:%!:%#] <%t> %v");
+      "[%Y-%m-%d %H:%M:%S.%e] [%n] [%^%l%$] [%s:%#] <%t> %v");
 }
 void urbis::logging::configure_logging() {
   std::call_once(_configure_logging_impl, configure_logging_impl);
