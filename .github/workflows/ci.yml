@@ -56,6 +56,6 @@ jobs:
       - name: Upload Package
         uses: actions/upload-artifact@v2
         with:
-          name: Urbis-${{ runner.os }}.tar.gz
-          path: ${{ github.workspace }}/build
+          name: Urbis-${{ runner.os }}
+          path: ${{ github.workspace }}/build/Urbis-${{ runner.os }}.tar.gz
           if-no-files-found: error
